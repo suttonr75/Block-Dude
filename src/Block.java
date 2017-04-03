@@ -3,6 +3,9 @@ public class Block {
 	private boolean fixed;
 	private boolean empty;
 	private boolean movable;
+	private boolean dude;
+	private boolean end;
+	private boolean start;
 	
 	public boolean getMovable(){
 		return movable;
@@ -26,6 +29,30 @@ public class Block {
 	
 	public void setFixed(boolean f){
 		fixed = f;
+	}
+	
+	public boolean getDude(){
+		return dude;
+	}
+	
+	public void setDude(boolean d){
+		dude = d;
+	}
+	
+	public boolean getEnd(){
+		return end;
+	}
+	
+	public void setEnd(boolean e){
+		end = e;
+	}
+	
+	public boolean getStart(){
+		return start;
+	}
+	
+	public void setStart(boolean s){
+		start = s;
 	}
 
 }
