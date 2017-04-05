@@ -1,11 +1,11 @@
 
 public class Block {
-	private boolean fixed;
-	private boolean empty;
-	private boolean movable;
-	private boolean dude;
-	private boolean end;
-	private boolean start;
+	private boolean fixed = false;
+	private boolean empty = false;
+	private boolean movable = false;
+	private boolean dude = false;
+	private boolean end = false;
+	private boolean start = false;
 	
 	public boolean getMovable(){
 		return movable;
@@ -53,6 +53,11 @@ public class Block {
 	
 	public void setStart(boolean s){
 		start = s;
+	}
+	public String toString(){
+		String s = "Move: " + movable;
+		s += "\t Dude: " + dude;
+		return s;
 	}
 
 }

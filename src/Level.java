@@ -9,7 +9,7 @@ public class Level {
 	
 	Level(int width, int height){
 		board = new Block[width][height];
-		findDude();
+		//findDude();
 		dudeRX = dudeX;
 		dudeRY = dudeY;
 	}
@@ -20,6 +20,9 @@ public class Level {
 				board[i][j] = b[i][j];
 			}
 		}
+		findDude();
+		dudeRX = dudeX;
+		dudeRY = dudeY;
 	}
 	
 	public void findDude(){
@@ -55,6 +58,17 @@ public class Level {
 		dudeX = dudeRX;
 		dudeY = dudeRY;
 		board[dudeX][dudeY].setDude(true);
+	}
+	
+	public String toString(){
+		String s = "";
+		for(int i = 0; i < board.length; i++){
+			for(int j = 0; j < board[0].length; j++){
+				s +="(" + i + "," + j + ") :" + board[i][j].toString();
+					
+			}
+		}
+		return s;
 	}
 
 }
