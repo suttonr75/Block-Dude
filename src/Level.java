@@ -9,16 +9,21 @@ public class Level {
 	private int blockX = 0;
 	private int blockY = 0;
 	private boolean blockHeld = false;
-	
+	public final int width;
+	public final int height;
 
 	
-	Level(int width, int height){
-		board = new Block[width][height];
+	Level(int w, int h){
+		board = new Block[w][h];
 		//findDude();
 		dudeRX = dudeX;
 		dudeRY = dudeY;
+		width = w;
+		height = h;
 	}
-	
+	public Block getBlock(int x, int y){
+		return board[x][y];
+	}
 	public void importCreatedLevel(Block[][] b){
 		for(int i = 0; i < board.length; i++){
 			for(int j = 0; j < board[0].length; j++){

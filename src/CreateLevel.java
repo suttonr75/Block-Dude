@@ -114,18 +114,23 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 						JButton but = (JButton)pan.getComponent(j*h + i);
 						if(but.getBackground().equals(Color.BLACK)){
 							board[i][j].setFixed(true);
+							System.out.println("board["+i+"]["+j+"].setFixed(true);");
 						}
 						if(but.getBackground().equals(Color.RED)){
 							board[i][j].setDude(true);
+							System.out.println("board["+i+"]["+j+"].setDude(true);");
 						}
 						if(but.getBackground().equals(Color.YELLOW)){
 							board[i][j].setEnd(true);
+							System.out.println("board["+i+"]["+j+"].setEnd(true);");
 						}
 						if(but.getBackground().equals(Color.WHITE)){
 							board[i][j].setEmpty(true);
+							System.out.println("board["+i+"]["+j+"].setEmpty(true);");
 						}
 						if(but.getBackground().equals(Color.GRAY)){
 							board[i][j].setMovable(true);
+							System.out.println("board["+i+"]["+j+"].setMovable(true);");
 						}
 					}
 				}
