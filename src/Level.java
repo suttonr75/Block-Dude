@@ -10,7 +10,7 @@ public class Level {
 	private int blockY = 0;
 	private boolean blockHeld = false;
 	
-	//testing
+
 	
 	Level(int width, int height){
 		board = new Block[width][height];
