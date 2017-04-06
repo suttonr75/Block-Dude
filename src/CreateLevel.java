@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -18,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.TimerTask;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,6 +31,7 @@ import javax.swing.Timer;
 public class CreateLevel extends JPanel implements MouseListener, ActionListener{
 	
 	JFrame frame = new JFrame();
+	JFrame frame2;
 	JButton fixed = new JButton();
 	JButton movable = new JButton();
 	JButton dude = new JButton();
@@ -53,13 +56,16 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 		h = height;
 		lev = new Level(width,height);
 		frame = new JFrame();
+		frame2 = new JFrame();
+		frame2.setLocation(width * 30 + 70, 0);
+		frame2.setSize(30, height*30);
 		frame.setSize(width * 30 + 30, height * 30);
 		pan.setSize(width * 30, height * 30);
 		pan2.setSize(30, height*30);
-		frame.setLayout(new GridLayout(1,2));
 		frame.setVisible(true);
 		frame.add(pan);
-		frame.add(pan2);
+		frame2.setVisible(true);
+		frame2.add(pan2);
 		pan.setLayout(new GridLayout(width,height));
 		pan2.setLayout(new GridLayout(5,1));
 		dude = new JButton("Dude Click");
@@ -135,6 +141,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				JButton button = new JButton();
+				button.setPreferredSize(new Dimension(30,30));
 				button.setBackground(Color.WHITE);
 				button.addActionListener(new ActionListener()
 				{
@@ -165,50 +172,21 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 		}
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addMouseListener(this);
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame2.pack();
 	}
 	public void mouseClicked(MouseEvent a) {
-		
-
 	}
-
-
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
 	}
-
-
-
-
-
-
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
 	}
-
-
-
-
-
-
 	public void mousePressed(MouseEvent a) {
-
-
 	}
-
-
-
-
-
-
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
 	}
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent arg0) {	
 	}
 
 

@@ -6,6 +6,9 @@ public class Level {
 	private int dudeRX = 0;
 	private int dudeRY = 0;
 	private boolean gameOver = false;
+	private int blockX = 0;
+	private int blockY = 0;
+	private boolean blockHeld = false;
 	
 	Level(int width, int height){
 		board = new Block[width][height];
@@ -42,9 +45,33 @@ public class Level {
 			board[dudeX + x][dudeY + y].setDude(true);
 			dudeX += x;
 			dudeY += y;
+			if(blockHeld){
+				moveBlock(x,y);
+			}
 		}
 		checkEnd();
 
+	}
+	
+	public void moveBlock(int x, int y){
+		board[blockX][blockY].setMovable(false);
+		board[blockX + x][blockY + y].setMovable(true);
+		blockX += x;
+		blockY += y;
+	}
+	
+	public void dropBlock(int x, int y){
+		board[blockX][blockY].setMovable(false);
+		board[x][y].setMovable(true);
+		blockHeld = false;
+	}
+	
+	public void pickUpBlock(int x, int y){
+		blockHeld = true;
+		board[x][y].setMovable(false);
+		board[dudeX][dudeY-1].setMovable(true);
+		blockX = dudeX;
+		blockY = dudeY-1;
 	}
 	
 	public void checkEnd(){
