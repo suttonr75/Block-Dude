@@ -99,5 +99,12 @@ public class Level {
 		}
 		return s;
 	}
+	public int getDudeX(){
+		return dudeX;
+	}
+	public int getDudeY(){
+		return dudeY;
+	}
+	
 
 }
