@@ -58,10 +58,10 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 		frame = new JFrame();
 		frame2 = new JFrame();
 		frame2.setLocation(width * 30 + 70, 0);
-		frame2.setSize(30, height*30);
+		frame2.setSize(140, height*30);
 		frame.setSize(width * 30 + 30, height * 30);
 		pan.setSize(width * 30, height * 30);
-		pan2.setSize(30, height*30);
+		pan2.setSize(140, height*30);
 		frame.setVisible(true);
 		frame.add(pan);
 		frame2.setVisible(true);
@@ -69,6 +69,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 		pan.setLayout(new GridLayout(width,height));
 		pan2.setLayout(new GridLayout(5,1));
 		dude = new JButton("Dude Click");
+		dude.setPreferredSize(new Dimension(140,height*30/5));
 		dude.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				dudeClick = !dudeClick;
@@ -78,6 +79,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 			}
 		});
 		end = new JButton("End Click");
+		end.setPreferredSize(new Dimension(140,height*30/5));
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				endClick = !endClick;
@@ -87,6 +89,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 			}
 		});
 		fixed = new JButton("Fixed Click");
+		fixed.setPreferredSize(new Dimension(140,height*30/5));
 		fixed.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				fixedClick = !fixedClick;
@@ -96,6 +99,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 			}
 		});
 		movable = new JButton("Moveable Click");
+		movable.setPreferredSize(new Dimension(140,height*30/5));
 		movable.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				moveClick = !moveClick;
@@ -105,6 +109,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 			}
 		});
 		done = new JButton("Done");
+		done.setPreferredSize(new Dimension(140,height*30/5));
 		done.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Block[][] board = new Block[w][h];
