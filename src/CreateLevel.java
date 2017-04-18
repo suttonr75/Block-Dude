@@ -1,17 +1,19 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
 public class CreateLevel extends JPanel implements MouseListener, ActionListener{
-	//test
 	JFrame frame = new JFrame();
 	JFrame frame2;
 	JButton fixed = new JButton();
@@ -30,7 +32,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 	private final int h;
 	
 	public static void main(String[] args){
-		CreateLevel a = new CreateLevel(10,10);
+		CreateLevel a = new CreateLevel(25,25);
 	}
 
 	public CreateLevel(int width, int height) {
@@ -122,6 +124,8 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 					}
 				}
 				lev.importCreatedLevel(board);
+				frame.dispose();
+				frame2.dispose();
 				
 			}
 		});
@@ -150,12 +154,14 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 						if(endClick){
 							JButton button = (JButton)e.getSource();
 							button.setBackground(Color.YELLOW);
-							button.setText("END");
+							button.setMargin(new Insets(5, 5, 5, 5) );
+							button.setText("E");
 						}
 						if(dudeClick){
 							JButton button = (JButton)e.getSource();
 							button.setBackground(Color.RED);
-							button.setText("DUDE");
+							button.setMargin(new Insets(5, 5, 5, 5) );
+							button.setText("D");
 						}
 					}
 				});
