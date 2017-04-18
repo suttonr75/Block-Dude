@@ -50,6 +50,7 @@ public class Level {
 	public void moveDude(int x, int y){
 		if(board[dudeX + x][dudeY + y].getEmpty()){
 			board[dudeX][dudeY].setDude(false);
+			board[dudeX][dudeY].setEmpty(true);
 			board[dudeX + x][dudeY + y].setDude(true);
 			dudeX += x;
 			dudeY += y;
