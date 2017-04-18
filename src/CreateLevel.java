@@ -21,18 +21,20 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 	JButton dude = new JButton();
 	JButton end = new JButton();
 	JButton done = new JButton();
+	JButton erase = new JButton();
 	JPanel pan = new JPanel();
 	JPanel pan2 = new JPanel();
 	private boolean fixedClick = false;
 	private boolean moveClick = false;
 	private boolean dudeClick = false;
 	private boolean endClick = false;
+	private boolean eraseClick = false;
 	Level lev;
 	private final int w;
 	private final int h;
 	
 	public static void main(String[] args){
-		CreateLevel a = new CreateLevel(25,25);
+		CreateLevel a = new CreateLevel(20,20);
 	}
 
 	public CreateLevel(int width, int height) {
@@ -51,49 +53,64 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 		frame2.setVisible(true);
 		frame2.add(pan2);
 		pan.setLayout(new GridLayout(width,height));
-		pan2.setLayout(new GridLayout(5,1));
+		pan2.setLayout(new GridLayout(6,1));
 		dude = new JButton("Dude Click");
-		dude.setPreferredSize(new Dimension(140,height*30/5));
+		dude.setPreferredSize(new Dimension(140,height*30/6));
 		dude.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				dudeClick = !dudeClick;
 				endClick = false;
 				moveClick = false;
 				fixedClick = false;
+				eraseClick = false;
 			}
 		});
 		end = new JButton("End Click");
-		end.setPreferredSize(new Dimension(140,height*30/5));
+		end.setPreferredSize(new Dimension(140,height*30/6));
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				endClick = !endClick;
 				dudeClick = false;
 				moveClick = false;
 				fixedClick = false;
+				eraseClick = false;
 			}
 		});
 		fixed = new JButton("Fixed Click");
-		fixed.setPreferredSize(new Dimension(140,height*30/5));
+		fixed.setPreferredSize(new Dimension(140,height*30/6));
 		fixed.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				fixedClick = !fixedClick;
 				endClick = false;
 				moveClick = false;
 				dudeClick = false;
+				eraseClick = false;
 			}
 		});
 		movable = new JButton("Moveable Click");
-		movable.setPreferredSize(new Dimension(140,height*30/5));
+		movable.setPreferredSize(new Dimension(140,height*30/6));
 		movable.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				moveClick = !moveClick;
 				endClick = false;
 				dudeClick = false;
 				fixedClick = false;
+				eraseClick = false;
+			}
+		});
+		erase = new JButton("Erase Click");
+		erase.setPreferredSize(new Dimension(140,height*30/6));
+		erase.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				eraseClick = !eraseClick;
+				endClick = false;
+				dudeClick = false;
+				fixedClick = false;
+				moveClick = false;
 			}
 		});
 		done = new JButton("Done");
-		done.setPreferredSize(new Dimension(140,height*30/5));
+		done.setPreferredSize(new Dimension(140,height*30/6));
 		done.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Block[][] board = new Block[w][h];
@@ -133,6 +150,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 		pan2.add(fixed);
 		pan2.add(movable);
 		pan2.add(end);
+		pan2.add(erase);
 		pan2.add(done);
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
@@ -156,6 +174,11 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 							button.setBackground(Color.YELLOW);
 							button.setMargin(new Insets(5, 5, 5, 5) );
 							button.setText("E");
+						}
+						if(eraseClick){
+							JButton button = (JButton)e.getSource();
+							button.setBackground(Color.WHITE);
+							button.setText("");
 						}
 						if(dudeClick){
 							JButton button = (JButton)e.getSource();
