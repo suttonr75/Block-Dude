@@ -11,12 +11,13 @@ public class GUI extends JPanel implements KeyListener{
 	private Level level;
 	private JFrame frame;
 	private boolean move =false;
+	public final int blockWidth;
 	GUI(Level l){
 		level = l;
 		frame = new JFrame("Block Dude");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 800);
-
+		frame.setSize(820, 840);
+		blockWidth = 800/l.width;
 		frame.add(this);
 		frame.setVisible(true);
 		frame.addKeyListener(this);
@@ -26,18 +27,22 @@ public class GUI extends JPanel implements KeyListener{
 	super.paintComponent(g);
 	if(move){
 		
-		g.fillRect(level.getDudeX()*20,level.getDudeY()*20, 20, 20);
+		g.fillRect(level.getDudeX()*blockWidth,level.getDudeY()*blockWidth, blockWidth, blockWidth);
 		
 	}
 	for(int i = 0;i<level.width;i++){
 		for(int j = 0;j<level.height;j++){
 			if(level.getBlock(i, j).getFixed()){
 				g.setColor(Color.gray);
-				g.fillRect(i*20, j*20, 20, 20);
+				g.fillRect(i*blockWidth, j*blockWidth, blockWidth, blockWidth);
 			}
 			if(level.getBlock(i, j).getMovable()){
 				g.setColor(Color.BLUE);
-				g.fillRect(i*20, j*20, 20, 20);
+				g.fillRect(i*blockWidth, j*blockWidth, blockWidth, blockWidth);
+			}
+			if(level.getBlock(i, j).getEnd()){
+				g.setColor(Color.red);
+				g.fillRect(i*blockWidth, j*blockWidth, blockWidth, blockWidth);
 			}
 		}
 	}
