@@ -22,6 +22,7 @@ public class Level {
 		width = w;
 		height = h;
 	}
+	
 	public Block getBlock(int x, int y){
 		return board[x][y];
 	}
@@ -112,9 +113,11 @@ public class Level {
 		}
 		return s;
 	}
+	
 	public int getDudeX(){
 		return dudeX;
 	}
+	
 	public int getDudeY(){
 		return dudeY;
 	}

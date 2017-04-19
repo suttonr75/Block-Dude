@@ -25,6 +25,7 @@ public class GUI extends JPanel implements KeyListener{
 	});
 	
 	
+	
 	GUI(Level l){
 		level = l;
 		frame = new JFrame("Block Dude");
@@ -35,6 +36,7 @@ public class GUI extends JPanel implements KeyListener{
 		frame.setVisible(true);
 		frame.addKeyListener(this);
 	}
+	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		if(first){
