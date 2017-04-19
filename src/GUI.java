@@ -19,13 +19,13 @@ public class GUI extends JPanel implements KeyListener{
 	private boolean endGame = false;
 	public final int blockWidth;
 	Timer close = new Timer(2000, new ActionListener(){
-    	public void actionPerformed(ActionEvent e) {
-    		System.exit(0);
-    	}
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
 	});
-	
-	
-	
+
+
+
 	GUI(Level l){
 		level = l;
 		frame = new JFrame("Block Dude");
@@ -36,7 +36,7 @@ public class GUI extends JPanel implements KeyListener{
 		frame.setVisible(true);
 		frame.addKeyListener(this);
 	}
-	
+
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		if(first){
@@ -44,6 +44,12 @@ public class GUI extends JPanel implements KeyListener{
 			g.fillRect(level.getDudeX()*blockWidth,level.getDudeY()*blockWidth, blockWidth, blockWidth);
 		}
 		if(move){
+			if(level.getLeft()){
+				g.setColor(Color.CYAN);
+			}
+			else{
+				g.setColor(Color.MAGENTA);
+			}
 			g.fillRect(level.getDudeX()*blockWidth,level.getDudeY()*blockWidth, blockWidth, blockWidth);
 
 		}
@@ -74,23 +80,75 @@ public class GUI extends JPanel implements KeyListener{
 			close.start();
 		}
 	}
-	
+
 	public void keyPressed(KeyEvent arg0) {
 		move = true;
-		if(arg0.getKeyCode()==arg0.VK_DOWN){		
-			level.moveDude(0, 1);
+		if(arg0.getKeyCode()==arg0.VK_DOWN){
+			if(level.getBlockHeld()){
+				if(level.getLeft()){
+					if(level.getBlock(level.getDudeX()-1, level.getDudeY()-1).getEmpty()){
+						int x = -1;
+						int y = 0;
+						while(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getEmpty()){
+							y++;
+						}
+						System.out.println("x " + x + "y" + y);
+						level.moveBlock(x, y, false);
+					}
+				}
+				else{
+					int x = 1;
+					int y = 0;
+					while(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
+						y++;
+					}
+					System.out.println("x " + x + "y" + y);
+					level.moveBlock(x, y, false);
+				}
+			}
+			else{
+				if(level.getLeft()){
+					if(level.getBlock(level.getDudeX()-1, level.getDudeY()).getMovable()){
+						level.moveBlock(1, -1, true);
+					}
+				}
+				else{
+					if(level.getBlock(level.getDudeX()+1, level.getDudeY()).getMovable()){
+						level.moveBlock(-1, -1, true);
+					}
+				}
+			}
+
 			repaint();
 		}
 		if(arg0.getKeyCode()==arg0.VK_UP){
-			level.moveDude(0, -1);
+			if(level.getLeft()){
+				if(!level.getBlock(level.getDudeX()-1, level.getDudeY()).getEmpty()){
+					level.moveDude(-1, -1);
+				}
+			}
+			else{
+				if(!level.getBlock(level.getDudeX()+1, level.getDudeY()).getEmpty()){
+					level.moveDude(+1, -1);
+				}
+			}
+
 			repaint();
 		}
 		if(arg0.getKeyCode()==arg0.VK_RIGHT){
+			level.setLeft(false);
 			level.moveDude(1, 0);
+			while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
+				level.moveDude(0, 1);
+			}
 			repaint();
 		}
 		if(arg0.getKeyCode()==arg0.VK_LEFT){
+			level.setLeft(true);
 			level.moveDude(-1, 0);
+			while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
+				level.moveDude(0, 1);
+			}
 			repaint();
 		}
 

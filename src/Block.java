@@ -57,6 +57,10 @@ public class Block {
 	public String toString(){
 		String s = "Move: " + movable;
 		s += "\t Dude: " + dude;
+		s += "\t empty: " + empty;
+		s += "\t movable: " + movable;
+		s += "\t fixed: " + fixed;
+		s += "\t end: " + end;
 		return s;
 	}
 
