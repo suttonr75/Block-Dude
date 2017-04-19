@@ -25,6 +25,11 @@ public class Level {
 	public Block getBlock(int x, int y){
 		return board[x][y];
 	}
+	
+	public boolean getEnd(){
+		return gameOver;
+	}
+	
 	public void importCreatedLevel(Block[][] b){
 		for(int i = 0; i < board.length; i++){
 			for(int j = 0; j < board[0].length; j++){
@@ -48,18 +53,19 @@ public class Level {
 	}
 	
 	public void moveDude(int x, int y){
-		if(board[dudeX + x][dudeY + y].getEmpty()){
-			board[dudeX][dudeY].setDude(false);
-			board[dudeX][dudeY].setEmpty(true);
-			board[dudeX + x][dudeY + y].setDude(true);
-			dudeX += x;
-			dudeY += y;
-			if(blockHeld){
-				moveBlock(x,y);
+		if(dudeX + x < board.length && dudeX + x > -1 && dudeY + y < board[0].length && dudeY + y > -1 ){
+			if(board[dudeX + x][dudeY + y].getEmpty()||board[dudeX + x][dudeY + y].getEnd()){
+				board[dudeX][dudeY].setDude(false);
+				board[dudeX][dudeY].setEmpty(true);
+				board[dudeX + x][dudeY + y].setDude(true);
+				dudeX += x;
+				dudeY += y;
+				if(blockHeld){
+					moveBlock(x,y);
+				}
 			}
+			checkEnd();
 		}
-		checkEnd();
-
 	}
 	
 	public void moveBlock(int x, int y){
