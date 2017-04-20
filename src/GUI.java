@@ -97,13 +97,15 @@ public class GUI extends JPanel implements KeyListener{
 					}
 				}
 				else{
-					int x = 1;
-					int y = 0;
-					while(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
-						y++;
+					if(level.getBlock(level.getDudeX()+1, level.getDudeY()-1).getEmpty()){
+						int x = 1;
+						int y = 0;
+						while(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
+							y++;
+						}
+						System.out.println("x " + x + " y " + y);
+						level.moveBlock(x, y, false);
 					}
-					System.out.println("x " + x + " y " + y);
-					level.moveBlock(x, y, false);
 				}
 			}
 			else{
@@ -124,12 +126,26 @@ public class GUI extends JPanel implements KeyListener{
 		if(arg0.getKeyCode()==arg0.VK_UP){
 			if(level.getLeft()){
 				if(!level.getBlock(level.getDudeX()-1, level.getDudeY()).getEmpty()){
-					level.moveDude(-1, -1);
+					if(level.getBlockHeld()){
+						if(level.getBlock(level.getDudeX(), level.getDudeY()-2).getEmpty()){
+							level.moveDude(-1, -1);
+						}
+					}else{
+						level.moveDude(-1, -1);
+					}
+					
 				}
 			}
 			else{
 				if(!level.getBlock(level.getDudeX()+1, level.getDudeY()).getEmpty()){
-					level.moveDude(+1, -1);
+					if(level.getBlockHeld()){
+						if(level.getBlock(level.getDudeX(), level.getDudeY()-2).getEmpty()){
+							level.moveDude(+1, -1);
+						}
+					}else{
+						level.moveDude(+1, -1);
+					}
+					
 				}
 			}
 
