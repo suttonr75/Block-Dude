@@ -108,17 +108,17 @@ public class GUI extends JPanel implements KeyListener{
 			}
 			else{
 				if(level.getLeft()){
-					if(level.getBlock(level.getDudeX()-1, level.getDudeY()).getMovable()){
+					if(level.getBlock(level.getDudeX()-1, level.getDudeY()).getMovable() && level.getBlock(level.getDudeX()-1, level.getDudeY()-1).getEmpty()){
 						level.moveBlock(1, -1, true);
 					}
 				}
 				else{
-					if(level.getBlock(level.getDudeX()+1, level.getDudeY()).getMovable()){
+					if(level.getBlock(level.getDudeX()+1, level.getDudeY()).getMovable() && level.getBlock(level.getDudeX()+1, level.getDudeY()-1).getEmpty()){
 						level.moveBlock(-1, -1, true);
 					}
 				}
 			}
-
+				
 			repaint();
 		}
 		if(arg0.getKeyCode()==arg0.VK_UP){
