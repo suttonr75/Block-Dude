@@ -64,17 +64,27 @@ public class Level {
 	
 			if(board[dudeX + x][dudeY + y].getEmpty()||board[dudeX + x][dudeY + y].getEnd()){
 
-				board[dudeX][dudeY].setDude(false);
-				board[dudeX][dudeY].setEmpty(true);
-				board[dudeX + x][dudeY + y].setDude(true);
-				dudeX += x;
-				dudeY += y;
 				if(blockHeld){
-					board[blockX][blockY].setMovable(false);
-					board[blockX][blockY].setEmpty(true);
-					board[blockX + x][blockY + y].setMovable(true);
-					blockX += x;
-					blockY += y;
+					if(board[blockX + x][blockY + y].getEmpty()){
+						board[dudeX][dudeY].setDude(false);
+						board[dudeX][dudeY].setEmpty(true);
+						board[dudeX + x][dudeY + y].setDude(true);
+						dudeX += x;
+						dudeY += y;
+						
+						board[blockX][blockY].setMovable(false);
+						board[blockX][blockY].setEmpty(true);
+						board[blockX + x][blockY + y].setMovable(true);
+						blockX += x;
+						blockY += y;
+					}
+
+				}else{
+					board[dudeX][dudeY].setDude(false);
+					board[dudeX][dudeY].setEmpty(true);
+					board[dudeX + x][dudeY + y].setDude(true);
+					dudeX += x;
+					dudeY += y;
 				}
 			}
 			checkEnd();

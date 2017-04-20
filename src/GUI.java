@@ -92,7 +92,7 @@ public class GUI extends JPanel implements KeyListener{
 						while(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getEmpty()){
 							y++;
 						}
-						System.out.println("x " + x + "y" + y);
+						System.out.println("x " + x + " y " + y);
 						level.moveBlock(x, y, false);
 					}
 				}
@@ -102,7 +102,7 @@ public class GUI extends JPanel implements KeyListener{
 					while(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
 						y++;
 					}
-					System.out.println("x " + x + "y" + y);
+					System.out.println("x " + x + " y " + y);
 					level.moveBlock(x, y, false);
 				}
 			}
