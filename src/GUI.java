@@ -55,17 +55,26 @@ public class GUI extends JPanel implements KeyListener{
 		}
 		for(int i = 0;i<level.width;i++){
 			for(int j = 0;j<level.height;j++){
-				if(level.getBlock(i, j).getFixed()){
-					g.setColor(Color.gray);
-					g.fillRect(i*blockWidth, j*blockWidth, blockWidth, blockWidth);
-				}
 				if(level.getBlock(i, j).getMovable()){
-					g.setColor(Color.BLUE);
-					g.fillRect(i*blockWidth, j*blockWidth, blockWidth, blockWidth);
+					java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+					g2.setStroke(new java.awt.BasicStroke(4)); // thickness of 3.0f
+					g2.setColor(Color.BLACK);
+					g2.drawRect(i*blockWidth+2, j*blockWidth+2, blockWidth-4, blockWidth-4);
 				}
+				if(level.getBlock(i, j).getFixed()){
+					g.setColor(Color.BLACK);
+					g.fillRect(i*blockWidth, j*blockWidth, (int) (blockWidth*.625), (int) (blockWidth*.25));
+					g.fillRect(i*blockWidth, (int) (j*blockWidth + blockWidth *.75), (int) (blockWidth*.625), (int) (blockWidth*.25));
+					g.fillRect(i*blockWidth, (int) (j*blockWidth + blockWidth *.375), (int) (blockWidth*.875), (int) (blockWidth*.25));
+					g.fillRect((int) (i*blockWidth + blockWidth * .75), (j*blockWidth), (int) (blockWidth*.25), (int) (blockWidth*.25));
+					g.fillRect((int) (i*blockWidth + blockWidth * .75), (int) (j*blockWidth + blockWidth * .75), (int) (blockWidth*.25), (int) (blockWidth*.25));
+				}
+
 				if(level.getBlock(i, j).getEnd()){
-					g.setColor(Color.red);
-					g.fillRect(i*blockWidth, j*blockWidth, blockWidth, blockWidth);
+					g.drawRect(i*blockWidth, j*blockWidth, blockWidth/2 - 1, blockWidth);
+					g.drawRect(i*blockWidth + blockWidth/2, j*blockWidth, blockWidth/2, blockWidth);
+					g.fillOval((int) (i*blockWidth + blockWidth*.285),(int) (j*blockWidth + blockWidth*.428),(int) (blockWidth*.142) ,(int) (blockWidth*.142) );
+					g.fillOval((int) (i*blockWidth + blockWidth*.571),(int) (j*blockWidth + blockWidth*.428),(int) (blockWidth*.142) ,(int) (blockWidth*.142) );
 				}
 			}
 		}
@@ -120,7 +129,7 @@ public class GUI extends JPanel implements KeyListener{
 					}
 				}
 			}
-				
+
 			repaint();
 		}
 		if(arg0.getKeyCode()==arg0.VK_UP){
@@ -133,7 +142,7 @@ public class GUI extends JPanel implements KeyListener{
 					}else{
 						level.moveDude(-1, -1);
 					}
-					
+
 				}
 			}
 			else{
@@ -145,7 +154,7 @@ public class GUI extends JPanel implements KeyListener{
 					}else{
 						level.moveDude(+1, -1);
 					}
-					
+
 				}
 			}
 
