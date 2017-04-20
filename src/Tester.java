@@ -345,7 +345,6 @@ public class Tester {
 		GUI g = new GUI(l);
 		
 	}
-	
 	public static void demo(){
 		Block[][] board = new Block[20][20];
 		for(int i =0;i<20;i++){
