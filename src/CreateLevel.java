@@ -34,7 +34,7 @@ public class CreateLevel extends JPanel implements MouseListener, ActionListener
 	private final int h;
 	
 	public static void main(String[] args){
-		CreateLevel a = new CreateLevel(20,20);
+		CreateLevel a = new CreateLevel(30,30);
 	}
 
 	public CreateLevel(int width, int height) {

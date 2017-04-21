@@ -54,6 +54,7 @@ public class Block {
 	public void setStart(boolean s){
 		start = s;
 	}
+	
 	public String toString(){
 		String s = "Move: " + movable;
 		s += "\t Dude: " + dude;
@@ -63,5 +64,5 @@ public class Block {
 		s += "\t end: " + end;
 		return s;
 	}
-
+	
 }

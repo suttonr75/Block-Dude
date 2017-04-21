@@ -85,7 +85,7 @@ public class GUI extends JPanel implements KeyListener{
 			Font gameover = new Font ("TimesRoman", Font.BOLD, 40);
 			g.setFont(gameover);
 			g.setColor(Color.white);
-			g.drawString("You Beat The Level", 270, 410);
+			g.drawString("You Beat The Level", 230, 410);
 			close.start();
 		}
 	}
