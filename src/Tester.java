@@ -2,7 +2,7 @@
 public class Tester {
 	public static void main(String[] args){
 		//test1();
-		demo3();
+		demo();
 	}
 
 	private static void test1() {

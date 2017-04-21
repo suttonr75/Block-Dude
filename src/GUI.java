@@ -12,6 +12,7 @@ import javax.swing.Timer;
 
 
 public class GUI extends JPanel implements KeyListener{
+	private boolean[][] dudeDraw = new boolean[8][8];
 	private Level level;
 	private JFrame frame;
 	private boolean move =false;
@@ -35,23 +36,67 @@ public class GUI extends JPanel implements KeyListener{
 		frame.add(this);
 		frame.setVisible(true);
 		frame.addKeyListener(this);
+		setDude();
+	}
+
+	private void setDude() {
+		dudeDraw[2][0]=true;
+		dudeDraw[3][0]=true;
+		dudeDraw[4][0]=true;
+		
+		dudeDraw[1][1]=true;
+		dudeDraw[2][1]=true;
+		dudeDraw[3][1]=true;
+		dudeDraw[4][1]=true;
+		dudeDraw[5][1]=true;
+		dudeDraw[6][1]=true;
+		
+		dudeDraw[1][2]=true;
+		dudeDraw[4][2]=true;
+		
+		dudeDraw[1][3]=true;
+		dudeDraw[5][3]=true;
+		
+		dudeDraw[2][4]=true;
+		dudeDraw[4][4]=true;
+		
+		dudeDraw[1][5]=true;
+		dudeDraw[3][5]=true;
+		dudeDraw[5][5]=true;
+		
+		dudeDraw[3][6]=true;
+		
+		dudeDraw[1][7]=true;
+		dudeDraw[2][7]=true;
+		dudeDraw[4][7]=true;
+		dudeDraw[5][7]=true;
+		
 	}
 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		g.setColor(Color.black);
 		if(first){
 			first = false;
-			g.fillRect(level.getDudeX()*blockWidth,level.getDudeY()*blockWidth, blockWidth, blockWidth);
+			for(int x = 0;x<dudeDraw.length;x++){
+				for(int y = 0;y<dudeDraw[0].length;y++){
+					if(dudeDraw[x][y]){
+						g.fillRect((int) (level.getDudeX()*blockWidth+ blockWidth*x*.125), (int) (level.getDudeY()*blockWidth+ blockWidth*y*.125), (int) (blockWidth*.125), (int) (blockWidth*(.125)));
+					}
+				}
+			}
 		}
 		if(move){
-			if(level.getLeft()){
-				g.setColor(Color.CYAN);
-			}
-			else{
-				g.setColor(Color.MAGENTA);
-			}
-			g.fillRect(level.getDudeX()*blockWidth,level.getDudeY()*blockWidth, blockWidth, blockWidth);
 
+			for(int x = 0;x<dudeDraw.length;x++){
+				for(int y = 0;y<dudeDraw[0].length;y++){
+					System.out.println(dudeDraw[x][y]);
+					if(dudeDraw[x][y]){
+						System.out.println(level.getDudeX()+"  "+level.getDudeY());
+						g.fillRect((int) (level.getDudeX()*blockWidth+ blockWidth*x*.125), (int) (level.getDudeY()*blockWidth+ blockWidth*y*.125), (int) (blockWidth*.125), (int) (blockWidth*(.125)));
+					}
+				}
+			}
 		}
 		for(int i = 0;i<level.width;i++){
 			for(int j = 0;j<level.height;j++){
