@@ -36,10 +36,15 @@ public class GUI extends JPanel implements KeyListener{
 		frame.add(this);
 		frame.setVisible(true);
 		frame.addKeyListener(this);
-		setDude();
+		setDudeRight();
 	}
 
-	private void setDude() {
+	private void setDudeRight() {
+		for(int i = 0; i < dudeDraw.length; i ++){
+			for(int j = 0; j < dudeDraw[0].length; j++){
+				dudeDraw[i][j] = false;
+			}
+		}
 		dudeDraw[2][0]=true;
 		dudeDraw[3][0]=true;
 		dudeDraw[4][0]=true;
@@ -72,10 +77,54 @@ public class GUI extends JPanel implements KeyListener{
 		dudeDraw[5][7]=true;
 		
 	}
+	
+	private void setDudeLeft() {
+		for(int i = 0; i < dudeDraw.length; i ++){
+			for(int j = 0; j < dudeDraw[0].length; j++){
+				dudeDraw[i][j] = false;
+			}
+		}
+		dudeDraw[3][0]=true;
+		dudeDraw[4][0]=true;
+		dudeDraw[5][0]=true;
+		
+		dudeDraw[1][1]=true;
+		dudeDraw[2][1]=true;
+		dudeDraw[3][1]=true;
+		dudeDraw[4][1]=true;
+		dudeDraw[5][1]=true;
+		dudeDraw[6][1]=true;
+		
+		dudeDraw[3][2]=true;
+		dudeDraw[6][2]=true;
+		
+		dudeDraw[2][3]=true;
+		dudeDraw[6][3]=true;
+		
+		dudeDraw[3][4]=true;
+		dudeDraw[5][4]=true;
+		
+		dudeDraw[2][5]=true;
+		dudeDraw[4][5]=true;
+		dudeDraw[6][5]=true;
+		
+		dudeDraw[4][6]=true;
+		
+		dudeDraw[2][7]=true;
+		dudeDraw[3][7]=true;
+		dudeDraw[5][7]=true;
+		dudeDraw[6][7]=true;
+		
+	}
 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.setColor(Color.black);
+		if(level.getLeft()){
+			setDudeLeft();
+		}else{
+			setDudeRight();
+		}
 		if(first){
 			first = false;
 			for(int x = 0;x<dudeDraw.length;x++){
