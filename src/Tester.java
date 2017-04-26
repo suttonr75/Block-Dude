@@ -2931,7 +2931,7 @@ public class Tester {
 		board[0][11].setFixed(true);
 		board[0][12].setFixed(true);
 		board[0][13].setEnd(true);
-		board[0][14].setFixed(true);
+		board[0][14].setEmpty(true);
 		board[0][15].setFixed(true);
 		board[0][16].setFixed(true);
 		board[0][17].setFixed(true);
@@ -2955,7 +2955,7 @@ public class Tester {
 		board[1][15].setEmpty(true);
 		board[1][16].setEmpty(true);
 		board[1][17].setEmpty(true);
-		board[1][18].setEmpty(true);
+		board[1][18].setMovable(true);
 		board[1][19].setFixed(true);
 		board[2][0].setFixed(true);
 		board[2][1].setEmpty(true);
@@ -3035,7 +3035,7 @@ public class Tester {
 		board[5][15].setEmpty(true);
 		board[5][16].setEmpty(true);
 		board[5][17].setEmpty(true);
-		board[5][18].setMovable(true);
+		board[5][18].setEmpty(true);
 		board[5][19].setFixed(true);
 		board[6][0].setFixed(true);
 		board[6][1].setEmpty(true);
@@ -3054,7 +3054,7 @@ public class Tester {
 		board[6][14].setEmpty(true);
 		board[6][15].setEmpty(true);
 		board[6][16].setEmpty(true);
-		board[6][17].setMovable(true);
+		board[6][17].setEmpty(true);
 		board[6][18].setMovable(true);
 		board[6][19].setFixed(true);
 		board[7][0].setFixed(true);
@@ -3274,7 +3274,7 @@ public class Tester {
 		board[17][14].setEmpty(true);
 		board[17][15].setEmpty(true);
 		board[17][16].setEmpty(true);
-		board[17][17].setEmpty(true);
+		board[17][17].setMovable(true);
 		board[17][18].setMovable(true);
 		board[17][19].setFixed(true);
 		board[18][0].setFixed(true);
@@ -3293,7 +3293,7 @@ public class Tester {
 		board[18][13].setEmpty(true);
 		board[18][14].setEmpty(true);
 		board[18][15].setEmpty(true);
-		board[18][16].setEmpty(true);
+		board[18][16].setMovable(true);
 		board[18][17].setMovable(true);
 		board[18][18].setMovable(true);
 		board[18][19].setFixed(true);
@@ -3321,4 +3321,5 @@ public class Tester {
 		l.importCreatedLevel(board);
 		GUI a = new GUI(l);
 	}
+	
 }

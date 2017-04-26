@@ -3,7 +3,11 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,13 +39,22 @@ public class StartScreen implements ActionListener  {
 		JTextField password = new JTextField();
 
 		JLabel enter = new JLabel("ENTER LEVEL PASSWORD");
-		
+		BufferedImage img = new BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
+		File a;
+		try{
+			a = new File("blockdude.jpeg");
+		    img = ImageIO.read(a);
+		}catch(Exception e){
+			
+		}
+
+		ImageIcon bDude = new ImageIcon(img);
 
 		inner.add(enter);
 		inner.add(password);
 		inner.add(play);
 		JLabel pic = new JLabel();
-		pic.setIcon(arg0);
+		pic.setIcon(bDude);
 		frame.pack();
 		
 
