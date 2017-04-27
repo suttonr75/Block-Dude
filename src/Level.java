@@ -12,9 +12,22 @@ public class Level {
 	private boolean blockHeld = false;
 	public final int width;
 	public final int height;
+	private String password = "";
+	private int levelNum = 0;
 
 
 
+	Level(int w, int h, String p, int lev){
+		board = new Block[w][h];
+		//findDude();
+		dudeRX = dudeX;
+		dudeRY = dudeY;
+		width = w;
+		height = h;
+		password = p;
+		levelNum = lev;
+	}
+	
 	Level(int w, int h){
 		board = new Block[w][h];
 		//findDude();
@@ -22,6 +35,22 @@ public class Level {
 		dudeRY = dudeY;
 		width = w;
 		height = h;
+	}
+	
+	public String getPassword(){
+		return password;
+	}
+	
+	public int getLevelNum(){
+		return levelNum;
+	}
+	
+	public void setPassword(String pass){
+		password = pass;
+	}
+	
+	public void setLevelNum(int l){
+		levelNum = l;
 	}
 
 	public Block getBlock(int x, int y){
