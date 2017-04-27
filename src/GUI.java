@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,9 +20,17 @@ public class GUI extends JPanel implements KeyListener{
 	private boolean first = true;
 	private boolean endGame = false;
 	public final int blockWidth;
-	Timer close = new Timer(2000, new ActionListener(){
+	private ArrayList<Level> levels = new ArrayList<Level>();
+	Timer close = new Timer(3000, new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);
+		}
+	});
+	Timer nextLev = new Timer(3000, new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			nextLev.stop();
+			frame.dispose();
+			GUI a = new GUI(levels, level.getLevelNum() + 1);
 		}
 	});
 
@@ -33,6 +42,19 @@ public class GUI extends JPanel implements KeyListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(820, 840);
 		blockWidth = 800/l.width;
+		frame.add(this);
+		frame.setVisible(true);
+		frame.addKeyListener(this);
+		setDudeRight();
+	}
+	
+	GUI(ArrayList<Level> levs, int index){
+		levels = levs;
+		level = levels.get(index);
+		frame = new JFrame("Block Dude");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(820, 840);
+		blockWidth = 800/levels.get(index).width;
 		frame.add(this);
 		frame.setVisible(true);
 		frame.addKeyListener(this);
@@ -179,8 +201,19 @@ public class GUI extends JPanel implements KeyListener{
 			Font gameover = new Font ("TimesRoman", Font.BOLD, 40);
 			g.setFont(gameover);
 			g.setColor(Color.white);
-			g.drawString("You Beat The Level", 230, 410);
-			close.start();
+			if(level.getLevelNum() == 8){
+				g.drawString("You Beat The Game", 230, 310);
+			}else{
+				g.drawString("You Beat The Level", 230, 310);
+			}
+			g.setColor(Color.white);
+			g.drawString("Password: " + level.getPassword(), 230, 510);
+			if(level.getLevelNum() == 8){
+				close.start();
+			}else{
+				nextLev.start();
+			}
+
 		}
 	}
 

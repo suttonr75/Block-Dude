@@ -60,14 +60,16 @@ public class StartScreen implements ActionListener  {
 			public void actionPerformed(ActionEvent e) { 
 				String s = password.getText();
 				int levNum = checkLev(s);
-				GUI a = new GUI(levels.get(levNum));
+				GUI a = new GUI(levels, levNum);
 				frame.dispose();
 			}
 
 			private int checkLev(String s) {
 				for(Level l : levels){
 					if(l.getPassword().equals(s)){
-						return l.getLevelNum();
+						if(l.getLevelNum() < 8){
+							return l.getLevelNum() + 1;
+						}
 					}
 				}
 				return 0;
