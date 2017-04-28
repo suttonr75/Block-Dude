@@ -163,7 +163,7 @@ public class GUI extends JPanel implements KeyListener{
 				for(int y = 0;y<dudeDraw[0].length;y++){
 					System.out.println(dudeDraw[x][y]);
 					if(dudeDraw[x][y]){
-						System.out.println(level.getDudeX()+"  "+level.getDudeY());
+						//System.out.println(level.getDudeX()+"  "+level.getDudeY());
 						g.fillRect((int) (level.getDudeX()*blockWidth+ blockWidth*x*.125), (int) (level.getDudeY()*blockWidth+ blockWidth*y*.125), (int) (blockWidth*.125), (int) (blockWidth*(.125)));
 					}
 				}
@@ -208,7 +208,7 @@ public class GUI extends JPanel implements KeyListener{
 			}
 			g.setColor(Color.white);
 			g.drawString("Password: " + level.getPassword(), 230, 510);
-			if(level.getLevelNum() == 8){
+			if(level.getLevelNum() == levels.size()-1){
 				close.start();
 			}else{
 				nextLev.start();
