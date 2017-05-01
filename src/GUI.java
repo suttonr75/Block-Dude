@@ -161,7 +161,7 @@ public class GUI extends JPanel implements KeyListener{
 
 			for(int x = 0;x<dudeDraw.length;x++){
 				for(int y = 0;y<dudeDraw[0].length;y++){
-					System.out.println(dudeDraw[x][y]);
+					//System.out.println(dudeDraw[x][y]);
 					if(dudeDraw[x][y]){
 						//System.out.println(level.getDudeX()+"  "+level.getDudeY());
 						g.fillRect((int) (level.getDudeX()*blockWidth+ blockWidth*x*.125), (int) (level.getDudeY()*blockWidth+ blockWidth*y*.125), (int) (blockWidth*.125), (int) (blockWidth*(.125)));
@@ -201,13 +201,13 @@ public class GUI extends JPanel implements KeyListener{
 			Font gameover = new Font ("TimesRoman", Font.BOLD, 40);
 			g.setFont(gameover);
 			g.setColor(Color.white);
-			if(level.getLevelNum() == 8){
+			if(level.getLevelNum() == levels.size()-1){
 				g.drawString("You Beat The Game", 230, 310);
 			}else{
 				g.drawString("You Beat The Level", 230, 310);
 			}
 			g.setColor(Color.white);
-			g.drawString("Password: " + level.getPassword(), 230, 510);
+			g.drawString("Password: " + level.getPassword(), 250, 510);
 			if(level.getLevelNum() == levels.size()-1){
 				close.start();
 			}else{
@@ -3895,7 +3895,7 @@ public class GUI extends JPanel implements KeyListener{
 			board[11][6].setEmpty(true);
 			board[11][7].setEmpty(true);
 			board[11][8].setEmpty(true);
-			board[11][9].setMovable(true);
+			board[11][9].setEmpty(true);
 			board[11][10].setEmpty(true);
 			board[11][11].setFixed(true);
 			board[11][12].setEmpty(true);
@@ -4052,7 +4052,7 @@ public class GUI extends JPanel implements KeyListener{
 			board[17][13].setEmpty(true);
 			board[17][14].setEmpty(true);
 			board[17][15].setEmpty(true);
-			board[17][16].setEmpty(true);
+			board[17][16].setMovable(true);
 			board[17][17].setFixed(true);
 			board[17][18].setEmpty(true);
 			board[17][19].setEmpty(true);
@@ -4077,7 +4077,7 @@ public class GUI extends JPanel implements KeyListener{
 			board[18][13].setEmpty(true);
 			board[18][14].setEmpty(true);
 			board[18][15].setEmpty(true);
-			board[18][16].setEmpty(true);
+			board[18][16].setMovable(true);
 			board[18][17].setFixed(true);
 			board[18][18].setEmpty(true);
 			board[18][19].setEmpty(true);
@@ -4239,7 +4239,7 @@ public class GUI extends JPanel implements KeyListener{
 			l = new Level(25,25,"koala",9);
 			l.importCreatedLevel(board);
 			levels.add(l);
-		GUI g = new GUI(levels,index);
+			GUI g = new GUI(levels,index);
 
 	}
 

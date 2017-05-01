@@ -3665,7 +3665,7 @@ public class StartScreen implements ActionListener  {
 		board[11][6].setEmpty(true);
 		board[11][7].setEmpty(true);
 		board[11][8].setEmpty(true);
-		board[11][9].setMovable(true);
+		board[11][9].setEmpty(true);
 		board[11][10].setEmpty(true);
 		board[11][11].setFixed(true);
 		board[11][12].setEmpty(true);
@@ -3822,7 +3822,7 @@ public class StartScreen implements ActionListener  {
 		board[17][13].setEmpty(true);
 		board[17][14].setEmpty(true);
 		board[17][15].setEmpty(true);
-		board[17][16].setEmpty(true);
+		board[17][16].setMovable(true);
 		board[17][17].setFixed(true);
 		board[17][18].setEmpty(true);
 		board[17][19].setEmpty(true);
@@ -3847,7 +3847,7 @@ public class StartScreen implements ActionListener  {
 		board[18][13].setEmpty(true);
 		board[18][14].setEmpty(true);
 		board[18][15].setEmpty(true);
-		board[18][16].setEmpty(true);
+		board[18][16].setMovable(true);
 		board[18][17].setFixed(true);
 		board[18][18].setEmpty(true);
 		board[18][19].setEmpty(true);
