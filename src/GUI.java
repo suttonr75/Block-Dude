@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -201,13 +202,24 @@ public class GUI extends JPanel implements KeyListener{
 			Font gameover = new Font ("TimesRoman", Font.BOLD, 40);
 			g.setFont(gameover);
 			g.setColor(Color.white);
+			
 			if(level.getLevelNum() == levels.size()-1){
-				g.drawString("You Beat The Game", 230, 310);
+				String text = "You Beat The Game";
+				FontMetrics metrics = g.getFontMetrics(gameover);
+				int x = (frame.getWidth() - metrics.stringWidth(text)) / 2;
+				int y = ((frame.getHeight() - metrics.getHeight()) / 2) + metrics.getAscent();
+				g.drawString(text, x, y);
 			}else{
-				g.drawString("You Beat The Level", 230, 310);
+				String text2 = "You Beat The Level";
+				FontMetrics metrics2 = g.getFontMetrics(gameover);
+				int x = (frame.getWidth() - metrics2.stringWidth(text2)) / 2;
+				g.drawString(text2, 230, 310);
+				g.setColor(Color.white);
+				String text = "Password: " + level.getPassword();
+				FontMetrics metrics = g.getFontMetrics(gameover);
+				x = (frame.getWidth() - metrics.stringWidth(text)) / 2;
+				g.drawString(text, x, 510);
 			}
-			g.setColor(Color.white);
-			g.drawString("Password: " + level.getPassword(), 250, 510);
 			if(level.getLevelNum() == levels.size()-1){
 				close.start();
 			}else{
