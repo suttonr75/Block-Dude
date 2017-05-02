@@ -207,7 +207,7 @@ public class GUI extends JPanel implements KeyListener{
 				String text = "You Beat The Game";
 				FontMetrics metrics = g.getFontMetrics(gameover);
 				int x = (frame.getWidth() - metrics.stringWidth(text)) / 2;
-				int y = ((frame.getHeight() - metrics.getHeight()) / 2) + metrics.getAscent();
+				int y = ((frame.getHeight() - metrics.getHeight()) / 2);
 				g.drawString(text, x, y);
 			}else{
 				String text2 = "You Beat The Level";
