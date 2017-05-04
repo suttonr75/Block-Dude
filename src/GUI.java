@@ -20,6 +20,10 @@ public class GUI extends JPanel implements KeyListener{
 	private boolean move =false;
 	private boolean first = true;
 	private boolean endGame = false;
+	private int aniX = 0;
+	private int aniY = 0;
+	private int fallY = 0;
+	private int counter = 0;
 	public final int blockWidth;
 	private ArrayList<Level> levels = new ArrayList<Level>();
 	Timer close = new Timer(3000, new ActionListener(){
@@ -32,6 +36,22 @@ public class GUI extends JPanel implements KeyListener{
 			nextLev.stop();
 			frame.dispose();
 			GUI a = new GUI(levels, level.getLevelNum() + 1);
+		}
+	});
+	Timer animation = new Timer(100, new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			if(counter == 0){
+				
+			}else{
+				level.fallBlock();
+			}
+			aniY--;
+			counter ++;
+			if(aniY == 0){
+				animation.stop();
+			}
+			repaint();
+
 		}
 	});
 
@@ -232,7 +252,6 @@ public class GUI extends JPanel implements KeyListener{
 	public void keyPressed(KeyEvent arg0) {
 		if(arg0.getKeyCode()==arg0.VK_ENTER||arg0.getKeyCode()==arg0.VK_SPACE||arg0.getKeyCode()==arg0.VK_R){
 			frame.setVisible(false);
-
 			resetLevel(level.getLevelNum());
 
 		}
@@ -247,7 +266,15 @@ public class GUI extends JPanel implements KeyListener{
 							y++;
 						}
 						//System.out.println("x " + x + " y " + y);
-						level.moveBlock(x, y, false);
+						aniX = level.getDudeX() - 1;
+						aniY = y;
+						counter = 0;
+						level.moveBlock(-1, 1, false);
+						if(y > 1){
+							level.setAni();
+							animation.start();
+						}
+						//level.moveBlock(x, y, false);
 					}
 				}
 				else{
@@ -258,7 +285,15 @@ public class GUI extends JPanel implements KeyListener{
 							y++;
 						}
 						//System.out.println("x " + x + " y " + y);
-						level.moveBlock(x, y, false);
+						aniX = level.getDudeX() + 1;
+						aniY = y;
+						counter = 0;
+						level.moveBlock(1, 1, false);
+						if(y > 1){
+							level.setAni();
+							animation.start();
+						}
+						//level.moveBlock(x, y, false);
 					}
 				}
 			}

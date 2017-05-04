@@ -9,6 +9,8 @@ public class Level {
 	private boolean gameOver = false;
 	private int blockX = 0;
 	private int blockY = 0;
+	private int aniBlockX = 0;
+	private int aniBlockY = 0;
 	private boolean blockHeld = false;
 	public final int width;
 	public final int height;
@@ -88,6 +90,7 @@ public class Level {
 	public void setLeft(boolean l){
 		left = l;
 	}
+	
 	public void moveDude(int x, int y){
 		if(dudeX + x < board.length && dudeX + x > -1 && dudeY + y < board[0].length && dudeY + y > -1 ){
 	
@@ -122,6 +125,20 @@ public class Level {
 	public boolean getBlockHeld(){
 		return blockHeld;
 	}
+	
+	public void setAni(){
+		aniBlockX = blockX;
+		aniBlockY = blockY;
+	}
+	
+	public void fallBlock(){
+		board[aniBlockX][aniBlockY].setMovable(false);
+		board[aniBlockX][aniBlockY].setEmpty(true);
+		board[aniBlockX][aniBlockY + 1].setMovable(true);
+		board[aniBlockX][aniBlockY + 1].setEmpty(false);
+		aniBlockY += 1;
+	}
+	
 	public void moveBlock(int x, int y, boolean pickUP){
 		if(pickUP){
 			if(left){

@@ -36,7 +36,7 @@ public class StartScreen implements ActionListener  {
 		JButton play = new JButton("Play");
 		
 		final JTextField password = new JTextField();
-
+		
 		JLabel enter = new JLabel("ENTER LEVEL PASSWORD");
 		BufferedImage img = new BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
 		File a;
@@ -46,7 +46,7 @@ public class StartScreen implements ActionListener  {
 		}catch(Exception e){
 			
 		}
-
+		
 		ImageIcon bDude = new ImageIcon(img);
 
 		inner.add(enter);
