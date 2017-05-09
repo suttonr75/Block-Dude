@@ -271,7 +271,7 @@ public class GUI extends JPanel implements KeyListener{
 						counter = 0;
 						level.moveBlock(-1, 1, false);
 						if(y > 1){
-							level.setAni();
+							level.setAni(y);
 							animation.start();
 						}
 						//level.moveBlock(x, y, false);
@@ -290,7 +290,7 @@ public class GUI extends JPanel implements KeyListener{
 						counter = 0;
 						level.moveBlock(1, 1, false);
 						if(y > 1){
-							level.setAni();
+							level.setAni(y);
 							animation.start();
 						}
 						//level.moveBlock(x, y, false);

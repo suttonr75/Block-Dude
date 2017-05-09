@@ -1,3 +1,10 @@
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.Timer;
+
 
 public class Level {
 	private boolean left = true;
@@ -16,6 +23,9 @@ public class Level {
 	public final int height;
 	private String password = "";
 	private int levelNum = 0;
+	private int fallHeight = 0;
+	private int counter = 0;
+	ArrayList<Fall> fallingBlocks = new ArrayList<Fall>();
 
 
 
@@ -126,18 +136,25 @@ public class Level {
 		return blockHeld;
 	}
 	
-	public void setAni(){
-		aniBlockX = blockX;
-		aniBlockY = blockY;
+	public void setAni(int fall){
+		fallingBlocks.add(new Fall(blockX,blockY,fall));
 	}
 	
 	public void fallBlock(){
-		board[aniBlockX][aniBlockY].setMovable(false);
-		board[aniBlockX][aniBlockY].setEmpty(true);
-		board[aniBlockX][aniBlockY + 1].setMovable(true);
-		board[aniBlockX][aniBlockY + 1].setEmpty(false);
-		aniBlockY += 1;
+		for(Fall a : fallingBlocks){
+			board[a.getX()][a.getY()].setMovable(false);
+			board[a.getX()][a.getY()].setEmpty(true);
+			board[a.getX()][a.getY() + 1].setMovable(true);
+			board[a.getX()][a.getY() + 1].setEmpty(false);
+			a.move();
+			if(a.getHeight() == 0){
+				fallingBlocks.remove(a);
+			}
+			
+		}
+		
 	}
+	
 	
 	public void moveBlock(int x, int y, boolean pickUP){
 		if(pickUP){
@@ -210,6 +227,14 @@ public class Level {
 
 	public int getDudeY(){
 		return dudeY;
+	}
+	
+	public int getBlockX(){
+		return blockX;
+	}
+	
+	public int getBlockY(){
+		return blockY;
 	}
 
 
