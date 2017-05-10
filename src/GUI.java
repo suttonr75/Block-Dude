@@ -183,6 +183,7 @@ public class GUI extends JPanel implements KeyListener{
 	}
 
 	public void paintComponent(Graphics g){
+		
 		super.paintComponent(g);
 		g.setColor(Color.black);
 		if(level.getLeft()){
@@ -225,8 +226,8 @@ public class GUI extends JPanel implements KeyListener{
 					g.fillRect(i*blockWidth, j*blockWidth, (int) (blockWidth*.625), (int) (blockWidth*.25));
 					g.fillRect(i*blockWidth, (int) (j*blockWidth + blockWidth *.75), (int) (blockWidth*.625), (int) (blockWidth*.25));
 					g.fillRect(i*blockWidth, (int) (j*blockWidth + blockWidth *.375), (int) (blockWidth*.875), (int) (blockWidth*.25));
-					g.fillRect((int) (i*blockWidth + blockWidth * .75), (j*blockWidth), (int) (blockWidth*.25), (int) (blockWidth*.25));
-					g.fillRect((int) (i*blockWidth + blockWidth * .75), (int) (j*blockWidth + blockWidth * .75), (int) (blockWidth*.25), (int) (blockWidth*.25));
+					g.fillRect((int) (i*blockWidth + blockWidth * .75), (j*blockWidth), (int) (blockWidth*.25+.5), (int) (blockWidth*.25));
+					g.fillRect((int) (i*blockWidth + blockWidth * .75), (int) (j*blockWidth + blockWidth * .75), (int) (blockWidth*.25+.5), (int) (blockWidth*.25));
 				}
 
 				if(level.getBlock(i, j).getEnd()){
@@ -283,33 +284,39 @@ public class GUI extends JPanel implements KeyListener{
 				if(level.getBlockHeld()){
 					if(level.getLeft()){
 						if(level.getBlock(level.getDudeX()-1, level.getDudeY()-1).getEmpty()){
-							int x = -1;
-							int y = 0;
-							int subY = 0;
-							boolean falling = true;
-							while(falling){
-								if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getEmpty()){
-									y++;
+							if(!level.getBlock(level.getDudeX()-1, level.getDudeY()).getEmpty()){
+								level.moveBlock(-1, 0, false);
+							}
+							else{
+								int x = -1;
+								int y = 0;
+								int subY = 0;
+								boolean falling = true;
+								while(falling){
+									if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getEmpty()){
+										y++;
+									}
+									else if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getMovable() && level.getBlock(level.getDudeX()-1, level.getDudeY()+y+1).getEmpty()){
+										y++;
+										subY ++;
+									}else{
+										falling = false;
+									}
 								}
-								else if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getMovable() && level.getBlock(level.getDudeX()-1, level.getDudeY()+y+1).getEmpty()){
-									y++;
-									subY ++;
-								}else{
-									falling = false;
+								
+								y = y - subY;
+								//System.out.println("x " + x + " y " + y);
+								aniX = level.getDudeX() - 1;
+								aniY = y;
+								counter = 0;
+								level.moveBlock(-1, 1, false);
+								if(y > 1){
+									level.setAni(y);
+									animation.start();
 								}
+								//level.moveBlock(x, y, false);	
 							}
 							
-							y = y - subY;
-							//System.out.println("x " + x + " y " + y);
-							aniX = level.getDudeX() - 1;
-							aniY = y;
-							counter = 0;
-							level.moveBlock(-1, 1, false);
-							if(y > 1){
-								level.setAni(y);
-								animation.start();
-							}
-							//level.moveBlock(x, y, false);
 						}
 					}
 					else{
