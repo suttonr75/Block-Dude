@@ -278,138 +278,141 @@ public class GUI extends JPanel implements KeyListener{
 
 		}
 		move = true;
-		if(arg0.getKeyCode()==arg0.VK_DOWN){
-			if(level.getBlockHeld()){
-				if(level.getLeft()){
-					if(level.getBlock(level.getDudeX()-1, level.getDudeY()-1).getEmpty()){
-						int x = -1;
-						int y = 0;
-						int subY = 0;
-						boolean falling = true;
-						while(falling){
-							if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getEmpty()){
-								y++;
+		if(!dudeAni.isRunning()){
+			if(arg0.getKeyCode()==arg0.VK_DOWN){
+				if(level.getBlockHeld()){
+					if(level.getLeft()){
+						if(level.getBlock(level.getDudeX()-1, level.getDudeY()-1).getEmpty()){
+							int x = -1;
+							int y = 0;
+							int subY = 0;
+							boolean falling = true;
+							while(falling){
+								if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getEmpty()){
+									y++;
+								}
+								else if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getMovable() && level.getBlock(level.getDudeX()-1, level.getDudeY()+y+1).getEmpty()){
+									y++;
+									subY ++;
+								}else{
+									falling = false;
+								}
 							}
-							else if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getMovable() && level.getBlock(level.getDudeX()-1, level.getDudeY()+y+1).getEmpty()){
-								y++;
-								subY ++;
-							}else{
-								falling = false;
+							
+							y = y - subY;
+							//System.out.println("x " + x + " y " + y);
+							aniX = level.getDudeX() - 1;
+							aniY = y;
+							counter = 0;
+							level.moveBlock(-1, 1, false);
+							if(y > 1){
+								level.setAni(y);
+								animation.start();
 							}
+							//level.moveBlock(x, y, false);
 						}
-						
-						y = y - subY;
-						//System.out.println("x " + x + " y " + y);
-						aniX = level.getDudeX() - 1;
-						aniY = y;
-						counter = 0;
-						level.moveBlock(-1, 1, false);
-						if(y > 1){
-							level.setAni(y);
-							animation.start();
+					}
+					else{
+						if(level.getBlock(level.getDudeX()+1, level.getDudeY()-1).getEmpty()){
+							int x = 1;
+							int y = 0;
+							int subY = 0;
+							boolean falling = true;
+							while(falling){
+								if(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
+									y++;
+								}
+								else if(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getMovable() && level.getBlock(level.getDudeX()+1, level.getDudeY()+y+1).getEmpty()){
+									y++;
+									subY ++;
+								}else{
+									falling = false;
+								}
+							}
+							
+							y = y - subY;
+							/*while(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
+								y++;
+							}*/
+							//System.out.println("x " + x + " y " + y);
+							aniX = level.getDudeX() + 1;
+							aniY = y;
+							counter = 0;
+							level.moveBlock(1, 1, false);
+							if(y > 1){
+								level.setAni(y);
+								animation.start();
+							}
+							//level.moveBlock(x, y, false);
 						}
-						//level.moveBlock(x, y, false);
 					}
 				}
 				else{
-					if(level.getBlock(level.getDudeX()+1, level.getDudeY()-1).getEmpty()){
-						int x = 1;
-						int y = 0;
-						int subY = 0;
-						boolean falling = true;
-						while(falling){
-							if(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
-								y++;
-							}
-							else if(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getMovable() && level.getBlock(level.getDudeX()+1, level.getDudeY()+y+1).getEmpty()){
-								y++;
-								subY ++;
-							}else{
-								falling = false;
-							}
+					if(level.getLeft()){
+						if(level.getBlock(level.getDudeX()-1, level.getDudeY()).getMovable() && level.getBlock(level.getDudeX()-1, level.getDudeY()-1).getEmpty()){
+							level.moveBlock(1, -1, true);
 						}
-						
-						y = y - subY;
-						/*while(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
-							y++;
-						}*/
-						//System.out.println("x " + x + " y " + y);
-						aniX = level.getDudeX() + 1;
-						aniY = y;
-						counter = 0;
-						level.moveBlock(1, 1, false);
-						if(y > 1){
-							level.setAni(y);
-							animation.start();
+					}
+					else{
+						if(level.getBlock(level.getDudeX()+1, level.getDudeY()).getMovable() && level.getBlock(level.getDudeX()+1, level.getDudeY()-1).getEmpty()){
+							level.moveBlock(-1, -1, true);
 						}
-						//level.moveBlock(x, y, false);
 					}
 				}
-			}
-			else{
-				if(level.getLeft()){
-					if(level.getBlock(level.getDudeX()-1, level.getDudeY()).getMovable() && level.getBlock(level.getDudeX()-1, level.getDudeY()-1).getEmpty()){
-						level.moveBlock(1, -1, true);
-					}
-				}
-				else{
-					if(level.getBlock(level.getDudeX()+1, level.getDudeY()).getMovable() && level.getBlock(level.getDudeX()+1, level.getDudeY()-1).getEmpty()){
-						level.moveBlock(-1, -1, true);
-					}
-				}
-			}
 
-			repaint();
-		}
-		if(arg0.getKeyCode()==arg0.VK_UP){
-			if(level.getLeft()){
-				if(!level.getBlock(level.getDudeX()-1, level.getDudeY()).getEmpty()){
-					if(level.getBlockHeld()){
-						if(level.getBlock(level.getDudeX(), level.getDudeY()-2).getEmpty()){
+				repaint();
+			}
+			if(arg0.getKeyCode()==arg0.VK_UP){
+				if(level.getLeft()){
+					if(!level.getBlock(level.getDudeX()-1, level.getDudeY()).getEmpty()){
+						if(level.getBlockHeld()){
+							if(level.getBlock(level.getDudeX(), level.getDudeY()-2).getEmpty()){
+								level.moveDude(-1, -1);
+							}
+						}else{
 							level.moveDude(-1, -1);
 						}
-					}else{
-						level.moveDude(-1, -1);
-					}
 
+					}
 				}
-			}
-			else{
-				if(!level.getBlock(level.getDudeX()+1, level.getDudeY()).getEmpty()){
-					if(level.getBlockHeld()){
-						if(level.getBlock(level.getDudeX(), level.getDudeY()-2).getEmpty()){
+				else{
+					if(!level.getBlock(level.getDudeX()+1, level.getDudeY()).getEmpty()){
+						if(level.getBlockHeld()){
+							if(level.getBlock(level.getDudeX(), level.getDudeY()-2).getEmpty()){
+								level.moveDude(+1, -1);
+							}
+						}else{
 							level.moveDude(+1, -1);
 						}
-					}else{
-						level.moveDude(+1, -1);
+
 					}
-
 				}
+
+				repaint();
 			}
+			if(arg0.getKeyCode()==arg0.VK_RIGHT){
 
-			repaint();
+				level.setLeft(false);
+				level.moveDude(1, 0);
+				repaint();
+				dudeAni.start();
+				/*while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
+					level.moveDude(0, 1);
+				}*/
+				
+			}
+			if(arg0.getKeyCode()==arg0.VK_LEFT){
+				level.setLeft(true);
+				level.moveDude(-1, 0);
+				repaint();
+				dudeAni.start();
+				/*while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
+					level.moveDude(0, 1);
+				}*/
+				
+			}
 		}
-		if(arg0.getKeyCode()==arg0.VK_RIGHT){
-
-			level.setLeft(false);
-			level.moveDude(1, 0);
-			repaint();
-			dudeAni.start();
-			/*while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
-				level.moveDude(0, 1);
-			}*/
-			
-		}
-		if(arg0.getKeyCode()==arg0.VK_LEFT){
-			level.setLeft(true);
-			level.moveDude(-1, 0);
-			repaint();
-			dudeAni.start();
-			/*while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
-				level.moveDude(0, 1);
-			}*/
-			
-		}
+		
 
 	}
 
