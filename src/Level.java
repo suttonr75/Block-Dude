@@ -25,6 +25,7 @@ public class Level {
 	private int levelNum = 0;
 	private int fallHeight = 0;
 	private int counter = 0;
+	private Fall dude;
 	ArrayList<Fall> fallingBlocks = new ArrayList<Fall>();
 
 
@@ -140,6 +141,10 @@ public class Level {
 		fallingBlocks.add(new Fall(blockX,blockY,fall));
 	}
 	
+	public void setDudeAni(int fall){
+		dude = new Fall(dudeX,dudeY,fall);
+	}
+	
 	public void fallBlock(){
 		for(int i = 0; i < fallingBlocks.size(); i ++){
 			Fall a = fallingBlocks.get(i);
@@ -155,6 +160,17 @@ public class Level {
 		}
 		
 	}
+	
+	public void fallDude(){
+		board[dude.getX()][dude.getY()].setMovable(false);
+		board[dude.getX()][dude.getY()].setEmpty(true);
+		board[dude.getX()][dude.getY() + 1].setMovable(true);
+		board[dude.getX()][dude.getY() + 1].setEmpty(false);
+		dude.move();
+			
+		
+	}
+	
 	
 	
 	public void moveBlock(int x, int y, boolean pickUP){

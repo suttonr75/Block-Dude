@@ -22,6 +22,7 @@ public class GUI extends JPanel implements KeyListener{
 	private boolean endGame = false;
 	private int aniX = 0;
 	private int aniY = 0;
+	private int dAniY = 0;
 	private int fallY = 0;
 	private int counter = 0;
 	public final int blockWidth;
@@ -48,6 +49,27 @@ public class GUI extends JPanel implements KeyListener{
 			aniY--;
 			counter ++;
 			/*if(aniY == 0){
+				animation.stop();
+			}*/
+			repaint();
+
+		}
+	});
+	Timer dudeAni = new Timer(100, new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			if(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
+				level.moveDude(0, 1);
+			}else{
+				dudeAni.stop();
+			}
+			/*if(counter == 0){
+				
+			}else{
+				level.fallDude();
+			}
+			daniY--;
+			counter ++;
+			if(aniY == 0){
 				animation.stop();
 			}*/
 			repaint();
@@ -371,18 +393,22 @@ public class GUI extends JPanel implements KeyListener{
 
 			level.setLeft(false);
 			level.moveDude(1, 0);
-			while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
-				level.moveDude(0, 1);
-			}
 			repaint();
+			dudeAni.start();
+			/*while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
+				level.moveDude(0, 1);
+			}*/
+			
 		}
 		if(arg0.getKeyCode()==arg0.VK_LEFT){
 			level.setLeft(true);
 			level.moveDude(-1, 0);
-			while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
-				level.moveDude(0, 1);
-			}
 			repaint();
+			dudeAni.start();
+			/*while(level.getBlock(level.getDudeX(), level.getDudeY()+1).getEmpty()){
+				level.moveDude(0, 1);
+			}*/
+			
 		}
 
 	}
