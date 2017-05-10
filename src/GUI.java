@@ -47,9 +47,9 @@ public class GUI extends JPanel implements KeyListener{
 			}
 			aniY--;
 			counter ++;
-			if(aniY == 0){
+			/*if(aniY == 0){
 				animation.stop();
-			}
+			}*/
 			repaint();
 
 		}
@@ -74,8 +74,8 @@ public class GUI extends JPanel implements KeyListener{
 		level = levels.get(index);
 		frame = new JFrame("Block Dude");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(820, 840);
-		blockWidth = 800/levels.get(index).width;
+		frame.setSize(720, 740);
+		blockWidth = 700/levels.get(index).width;
 		frame.add(this);
 		frame.setVisible(true);
 		frame.addKeyListener(this);
@@ -262,9 +262,21 @@ public class GUI extends JPanel implements KeyListener{
 					if(level.getBlock(level.getDudeX()-1, level.getDudeY()-1).getEmpty()){
 						int x = -1;
 						int y = 0;
-						while(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getEmpty()){
-							y++;
+						int subY = 0;
+						boolean falling = true;
+						while(falling){
+							if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getEmpty()){
+								y++;
+							}
+							else if(level.getBlock(level.getDudeX()-1, level.getDudeY()+y).getMovable() && level.getBlock(level.getDudeX()-1, level.getDudeY()+y+1).getEmpty()){
+								y++;
+								subY ++;
+							}else{
+								falling = false;
+							}
 						}
+						
+						y = y - subY;
 						//System.out.println("x " + x + " y " + y);
 						aniX = level.getDudeX() - 1;
 						aniY = y;
@@ -281,9 +293,24 @@ public class GUI extends JPanel implements KeyListener{
 					if(level.getBlock(level.getDudeX()+1, level.getDudeY()-1).getEmpty()){
 						int x = 1;
 						int y = 0;
-						while(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
-							y++;
+						int subY = 0;
+						boolean falling = true;
+						while(falling){
+							if(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
+								y++;
+							}
+							else if(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getMovable() && level.getBlock(level.getDudeX()+1, level.getDudeY()+y+1).getEmpty()){
+								y++;
+								subY ++;
+							}else{
+								falling = false;
+							}
 						}
+						
+						y = y - subY;
+						/*while(level.getBlock(level.getDudeX()+1, level.getDudeY()+y).getEmpty()){
+							y++;
+						}*/
 						//System.out.println("x " + x + " y " + y);
 						aniX = level.getDudeX() + 1;
 						aniY = y;

@@ -141,14 +141,15 @@ public class Level {
 	}
 	
 	public void fallBlock(){
-		for(Fall a : fallingBlocks){
+		for(int i = 0; i < fallingBlocks.size(); i ++){
+			Fall a = fallingBlocks.get(i);
 			board[a.getX()][a.getY()].setMovable(false);
 			board[a.getX()][a.getY()].setEmpty(true);
 			board[a.getX()][a.getY() + 1].setMovable(true);
 			board[a.getX()][a.getY() + 1].setEmpty(false);
 			a.move();
-			if(a.getHeight() == 0){
-				fallingBlocks.remove(a);
+			if(a.getHeight() == 1){
+				fallingBlocks.remove(i);
 			}
 			
 		}
